@@ -30,6 +30,9 @@ namespace Xamarin.Forms
 			BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(Picker), null, BindingMode.TwoWay,
 									propertyChanged: OnSelectedItemChanged);
 
+		public static readonly BindableProperty DisablePopupProperty =
+			BindableProperty.Create(nameof(DisablePopup), typeof(bool), typeof(Picker), false, BindingMode.TwoWay);
+
 		readonly Lazy<PlatformConfigurationRegistry<Picker>> _platformConfigurationRegistry;
 
 		public Picker()
@@ -66,6 +69,12 @@ namespace Xamarin.Forms
 		public string Title {
 			get { return (string)GetValue(TitleProperty); }
 			set { SetValue(TitleProperty, value); }
+		}
+
+		public bool DisablePopup
+		{
+			get { return (bool)GetValue(DisablePopupProperty); }
+			set { SetValue(DisablePopupProperty, value); }
 		}
 
 		BindingBase _itemDisplayBinding;

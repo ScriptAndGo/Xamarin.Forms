@@ -93,6 +93,8 @@ namespace Xamarin.Forms.Platform.Android
 
 		void OnClick()
 		{
+			if (Element.DisablePopup)
+				return;
 			Picker model = Element;
 
 			var picker = new NumberPicker(Context);

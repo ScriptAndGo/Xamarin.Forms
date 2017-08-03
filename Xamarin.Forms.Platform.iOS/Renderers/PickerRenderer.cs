@@ -71,8 +71,24 @@ namespace Xamarin.Forms.Platform.iOS
 				UpdatePicker();
 			if (e.PropertyName == Picker.SelectedIndexProperty.PropertyName)
 				UpdatePicker();
+
+			if (e.PropertyName == Picker.DisablePopupProperty.PropertyName)
+				UpdatePopupStatus();
+
 			if (e.PropertyName == Picker.TextColorProperty.PropertyName || e.PropertyName == VisualElement.IsEnabledProperty.PropertyName)
 				UpdateTextColor();
+		}
+
+		private void UpdatePopupStatus()
+		{
+			if (Element.DisablePopup)
+			{
+				Control.InputView = null;
+
+			} else {
+				Control.InputView = _picker;
+                UpdatePicker();
+			}
 		}
 
 		void OnEnded(object sender, EventArgs eventArgs)

@@ -94,6 +94,8 @@ namespace Xamarin.Forms.Platform.Android.AppCompat
 		void OnClick()
 		{
 			Picker model = Element;
+            if (model.DisablePopup)
+                return;
 			if (_dialog == null)
 			{
 				using (var builder = new AlertDialog.Builder(Context))
