@@ -10,6 +10,7 @@ namespace Xamarin.Forms.Platform.iOS
 	public class PickerRenderer : ViewRenderer<Picker, UITextField>
 	{
 		UIPickerView _picker;
+		UIToolbar _toolbar;
 		UIColor _defaultTextColor;
 		bool _disposed;
 
@@ -32,7 +33,7 @@ namespace Xamarin.Forms.Platform.iOS
 					_picker = new UIPickerView();
 
 					var width = UIScreen.MainScreen.Bounds.Width;
-					var toolbar = new UIToolbar(new RectangleF(0, 0, width, 44)) { BarStyle = UIBarStyle.Default, Translucent = true };
+					_toolbar = new UIToolbar(new RectangleF(0, 0, width, 44)) { BarStyle = UIBarStyle.Default, Translucent = true };
 					var spacer = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace);
 					var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, (o, a) =>
 					{
@@ -43,10 +44,10 @@ namespace Xamarin.Forms.Platform.iOS
 						entry.ResignFirstResponder();
 					});
 
-					toolbar.SetItems(new[] { spacer, doneButton }, false);
+					_toolbar.SetItems(new[] { spacer, doneButton }, false);
 
 					entry.InputView = _picker;
-					entry.InputAccessoryView = toolbar;
+					entry.InputAccessoryView = _toolbar;
 
 					_defaultTextColor = entry.TextColor;
 
@@ -84,9 +85,11 @@ namespace Xamarin.Forms.Platform.iOS
 			if (Element.DisablePopup)
 			{
 				Control.InputView = null;
+				Control.InputAccessoryView = null;
 
 			} else {
 				Control.InputView = _picker;
+				Control.InputAccessoryView = _toolbar;
                 UpdatePicker();
 			}
 		}
