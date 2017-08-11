@@ -112,7 +112,7 @@ namespace Xamarin.Forms.Platform.WinRT
 			// Picker opens the dropdown (with the exception where if focus was given via keyboard, such
 			// as tabbing through controls). The _dropDownWasOpened flag is reset to false in the case that
 			// the FormsComboBox regained focus after the dropdown closed.
-			if (!_dropDownWasOpened && Control.FocusState != FocusState.Keyboard)
+			if (!_dropDownWasOpened && Control.FocusState != FocusState.Keyboard && !Element.DisablePopup)
 				Control.IsDropDownOpen = true;
 			else
 				_dropDownWasOpened = false;

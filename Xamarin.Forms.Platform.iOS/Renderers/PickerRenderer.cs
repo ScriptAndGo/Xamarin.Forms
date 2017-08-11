@@ -90,7 +90,7 @@ namespace Xamarin.Forms.Platform.iOS
 			} else {
 				Control.InputView = _picker;
 				Control.InputAccessoryView = _toolbar;
-                UpdatePicker();
+				UpdatePicker();
 			}
 		}
 
